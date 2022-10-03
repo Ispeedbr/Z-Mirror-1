@@ -84,13 +84,13 @@ class TgUploader:
             leechchat = LEECH_DUMP
         else: leechchat = self.__listener.message.chat.id
         if CUSTOM_FILENAME is not None:
-            cap_mono = f"{CUSTOM_FILENAME} <b>{file_}</b>"
+            cap_mono = f"{CUSTOM_FILENAME} <i>{file_}</i>"
             file_ = f"{CUSTOM_FILENAME} {file_}"
             new_path = ospath.join(dirpath, file_)
             osrename(up_path, new_path)
             up_path = new_path
         else:
-            cap_mono = f"<b>{file_}</b>"
+            cap_mono = f"<i>{file_}</i>"
         notMedia = False
         thumb = self.__thumb
         self.__is_corrupted = False
@@ -125,7 +125,7 @@ class TgUploader:
                                                                   supports_streaming=True,
                                                                   disable_notification=True,
                                                                   progress=self.__upload_progress)
-                    if not self.isPrivate and BOT_PM:
+                    if BOT_PM:
                         try:
                             app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
                         except Exception as err:
@@ -140,7 +140,7 @@ class TgUploader:
                                                                   thumb=thumb,
                                                                   disable_notification=True,
                                                                   progress=self.__upload_progress)
-                    if not self.isPrivate and BOT_PM:
+                    if BOT_PM:
                         try:
                             app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
                         except Exception as err:
@@ -150,7 +150,7 @@ class TgUploader:
                                                                   caption=cap_mono,
                                                                   disable_notification=True,
                                                                   progress=self.__upload_progress)
-                    if not self.isPrivate and BOT_PM:
+                    if BOT_PM:
                         try:
                             app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
                         except Exception as err:
@@ -169,7 +169,7 @@ class TgUploader:
                                                                  caption=cap_mono,
                                                                  disable_notification=True,
                                                                  progress=self.__upload_progress)
-                if not self.isPrivate and BOT_PM:
+                if BOT_PM:
                     try:
                         app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
                     except Exception as err:
